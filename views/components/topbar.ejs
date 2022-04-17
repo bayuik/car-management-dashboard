@@ -61,41 +61,55 @@
         </li>
       </ul>
     </nav>
-
     <div class="container-fluid">
       <div aria-label="breadcrumb">
         <ol class="breadcrumb bg-light">
           <li class="breadcrumb-item"><a href="#" class="text-dark fw-bold">Cars</a></li>
-          <li class="breadcrumb-item active" aria-current="page">List Car</li>
+          <% if(page !="List Cars" ){ %>
+            <li class="breadcrumb-item"><a href="/list-cars" class="text-dark fw-bold">List Cars</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <%= page %>
+            </li>
+            <% }else{ %>
+              <li class="breadcrumb-item active" aria-current="page">
+                <%= page %>
+              </li>
+              <% } %>
         </ol>
       </div>
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 class="text-dark mb-0 font-weight-bold">List Car</h5>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">+ Add New Car</a>
+        <h5 class="text-dark mb-0 font-weight-bold ml-3">
+          <%= page %>
+        </h5>
+        <% if(page=='List Cars' ) { %>
+          <a href="/add-car" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">+ Add New Car</a>
+          <% } %>
       </div>
     </div>
-    <div class="container mb-3">
-      <button type="button" class="btn btn-sm btn-outline-primary mr-3">All</button>
-      <button type="button" class="btn btn-sm btn-outline-primary mr-3">Small</button>
-      <button type="button" class="btn btn-sm btn-outline-primary mr-3">Medium</button>
-      <button type="button" class="btn btn-sm btn-outline-primary mr-3">Large</button>
-    </div>
+    <% if(page=='List Cars' ) { %>
+      <div class="container mb-3">
+        <button type="button" class="btn btn-sm btn-outline-primary mr-3">All</button>
+        <button type="button" class="btn btn-sm btn-outline-primary mr-3">Small</button>
+        <button type="button" class="btn btn-sm btn-outline-primary mr-3">Medium</button>
+        <button type="button" class="btn btn-sm btn-outline-primary mr-3">Large</button>
+      </div>
+      <% }%>
 
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="#">Logout</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
