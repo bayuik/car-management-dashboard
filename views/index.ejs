@@ -3,32 +3,34 @@
     <%- include("components/topbar.ejs") %>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
-            <div class="card p-4 m-2">
-              <img src="/images/cars-1.png" alt="cars-1" class="mb-5 rounded">
-              <p class="font-weight-bold">nama mobil/Tipe mobil</p>
-              <p class="fw-bold">Rp 10.000 / hari</p>
-              <p><i class="bi bi-clock mr-2"></i>Updated At</p>
-              <div class="d-flex justify-content-between">
-                <button class="btn btn-outline-danger" type="button" style="width: 47%;" data-bs-target="#modalDelete"
-                  data-bs-toggle="modal"><i class="bi bi-trash mr-2"></i>Delete</button>
-                <a href="/edit-car" class="btn btn-success" style="width: 47%;"><i
-                    class="bi bi-pencil-square mr-2"></i>Edit</a>
+          <% cars.map(({id, name, price, size, image, updatedAt})=> { %>
+            <div class="col-md-4">
+              <div class="card p-4 m-2">
+                <img src="/images/cars-1.png" alt="cars-1" class="mb-5 rounded">
+                <p class="font-weight-bold"><%= name %> </p>
+                <p class="fw-bold">Rp <%= price %>  / hari</p>
+                <p><i class="bi bi-clock mr-2"></i>Updated at <%= updatedAt %>  </p>
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-outline-danger" type="button" style="width: 47%;" data-bs-target="#modalDelete"
+                    data-bs-toggle="modal"><i class="bi bi-trash mr-2"></i>Delete</button>
+                  <a href="/edit-car/<%= id %>" class="btn btn-success" style="width: 47%;"><i
+                      class="bi bi-pencil-square mr-2"></i>Edit</a>
+                </div>
               </div>
             </div>
-          </div>
+            <% }) %>
         </div>
       </div>
 
-      <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog col-md-4">
+      <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDelete" aria-hidden="true">
+        <div class="modal-dialog">
           <div class="card p-4 m-2 align-items-center">
             <img src="/images/img-BeepBeep.png" width="200px" alt="cars-1" class="mb-5 rounded">
             <h5>Menghapus Data Mobil</h5>
             <p class="text-center">Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
-            <div class="d-flex">
-              <button class="btn btn-primary" style="width: 75%;" type="button">Ya</button>
-              <button class="btn btn-outline-primary" style="width: 75%;">Tidak</button>
+            <div class="d-flex w-50">
+              <button class="btn btn-primary mr-5" style="width: 50%;">Ya</button>
+              <button class="btn btn-outline-primary" style="width: 50%;">Tidak</button>
             </div>
           </div>
         </div>
