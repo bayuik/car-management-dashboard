@@ -1,12 +1,12 @@
 const { Car } = require("../models");
 
-const createCar = (req, res) => {
+const createCar = (req, res, next) => {
   const { name, price, size, image } = req.body;
   Car.create({
     name: name,
     price: price,
     size: size,
-    image: image,
+    image: req.file.filename,
   }).then(() => {
     res.redirect("/");
   });
@@ -30,8 +30,7 @@ const getCar = (req, res) => {
   });
 };
 
-const updateCar = (req, res) => {
-  console.log(`update ${req.body} ${req.params.id}`);
+const updateCar = (req, res, next) => {
   const { name, price, size, image } = req.body;
   const query = {
     where: {
@@ -44,7 +43,7 @@ const updateCar = (req, res) => {
       name,
       price,
       size,
-      image,
+      image: req.file.filename,
     },
     query
   ).then(() => {

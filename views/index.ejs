@@ -6,11 +6,11 @@
           <% cars.map(({id, name, price, size, image, updatedAt})=> { %>
             <div class="col-md-4">
               <div class="card p-4 m-2">
-                <img src="/images/cars-1.png" alt="cars-1" class="mb-5 rounded">
+                <img src="/uploads/<%= image %>" alt="cars-1" height="160px" class="mb-5 rounded">
                 <p class="font-weight-bold">
                   <%= name %>
                 </p>
-                <p class="fw-bold">Rp <%= price %> / hari</p>
+                <p class="fw-bold text-dark">Rp <%= (price/1000).toFixed(3) %> / hari</p>
                 <p><i class="bi bi-clock mr-2"></i>Updated at <%= updatedAt %>
                 </p>
                 <div class="d-flex justify-content-between">

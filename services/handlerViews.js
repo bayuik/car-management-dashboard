@@ -1,8 +1,12 @@
 const axios = require("axios");
+const moment = require("moment");
 
 const listCars = (req, res) => {
   axios.get("http://localhost:3000/cars").then((response) => {
     const cars = response.data;
+    cars.forEach((car) => {
+      car.updatedAt = moment(car.updatedAt).format("DD MMM YYYY, HH:MM");
+    });
     res.render("index", {
       cars,
       page: "List Cars",
