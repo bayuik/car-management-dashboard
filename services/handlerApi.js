@@ -13,7 +13,9 @@ const createCar = (req, res) => {
 };
 
 const listCar = (req, res) => {
-  Car.findAll().then((car) => {
+  Car.findAll({
+    order: [["id", "DESC"]],
+  }).then((car) => {
     res.status(200).json(car);
   });
 };
