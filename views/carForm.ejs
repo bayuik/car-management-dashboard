@@ -12,7 +12,7 @@
                       <div class="form-group row">
                         <label class="form-label col-2" for="nama">Nama<span class="text-danger">*</span></label>
                         <div class="col-10">
-                          <input class="form-control" id="nama" type="text" data-sb-validations="required"
+                          <input class="form-control" id="nama" type="text" required data-sb-validations="required"
                             name="name" />
                           <div class="invalid-feedback" data-sb-feedback="nama:required">Nama* is required.</div>
                         </div>
@@ -21,7 +21,7 @@
                         <label class="form-label col-2" for="sewaPerHari">Sewa Per Hari<span
                             class="text-danger">*</span></label>
                         <div class="col-10">
-                          <input class="form-control" id="sewaPerHari" type="number" data-sb-validations="required"
+                          <input class="form-control" id="sewaPerHari" type="number" data-sb-validations="required" required
                             name="price" />
                           <div class="invalid-feedback" data-sb-feedback="sewaPerHari:required">Sewa Per Hari* is
                             required.
@@ -31,7 +31,7 @@
                       <div class="form-group row">
                         <label class="form-label col-2" for="ukuran">Ukuran<span class="text-danger">*</span></label>
                         <div class="col-10">
-                          <select class="form-select" id="ukuran" aria-label="Ukuran" name="size">
+                          <select class="form-select" id="ukuran" aria-label="Ukuran" name="size" required>
                             <option value="small">Small</option>
                             <option value="medium">Medium</option>
                             <option value="large">Large</option>
@@ -54,5 +54,5 @@
                   </form>
           </div>
         </div>
-        <!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> -->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <%- include("components/footer.ejs") %>

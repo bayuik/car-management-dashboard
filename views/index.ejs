@@ -7,12 +7,16 @@
             <div class="col-md-4">
               <div class="card p-4 m-2">
                 <img src="/images/cars-1.png" alt="cars-1" class="mb-5 rounded">
-                <p class="font-weight-bold"><%= name %> </p>
-                <p class="fw-bold">Rp <%= price %>  / hari</p>
-                <p><i class="bi bi-clock mr-2"></i>Updated at <%= updatedAt %>  </p>
+                <p class="font-weight-bold">
+                  <%= name %>
+                </p>
+                <p class="fw-bold">Rp <%= price %> / hari</p>
+                <p><i class="bi bi-clock mr-2"></i>Updated at <%= updatedAt %>
+                </p>
                 <div class="d-flex justify-content-between">
-                  <button class="btn btn-outline-danger" type="button" style="width: 47%;" data-bs-target="#modalDelete"
-                    data-bs-toggle="modal"><i class="bi bi-trash mr-2"></i>Delete</button>
+                  <button class="btn btn-outline-danger" type="button" onclick="confirmDelete('<%= id %>')"
+                    style="width: 47%;" data-bs-target="#deleteModal" data-bs-toggle="modal"><i
+                      class="bi bi-trash mr-2"></i>Delete</button>
                   <a href="/edit-car/<%= id %>" class="btn btn-success" style="width: 47%;"><i
                       class="bi bi-pencil-square mr-2"></i>Edit</a>
                 </div>
@@ -22,17 +26,31 @@
         </div>
       </div>
 
-      <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDelete" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="card p-4 m-2 align-items-center">
-            <img src="/images/img-BeepBeep.png" width="200px" alt="cars-1" class="mb-5 rounded">
-            <h5>Menghapus Data Mobil</h5>
-            <p class="text-center">Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
-            <div class="d-flex w-50">
-              <button class="btn btn-primary mr-5" style="width: 50%;">Ya</button>
-              <button class="btn btn-outline-primary" style="width: 50%;">Tidak</button>
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="p-4 text-center">
+                <img src="/images/img-BeepBeep.png" width="200px" alt="cars-1" class="mb-5 rounded">
+                <h5>Menghapus Data Mobil</h5>
+                <p class="text-center">Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
+                <form action="" method="post">
+                  <div class="d-flex w-50 mx-auto">
+                    <button id="confirmBtn" type="submit" class="btn btn-primary mr-5" style="width: 50%;">Ya</button>
+                    <button class="btn btn-outline-primary" style="width: 50%;">Tidak</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <%- include("components/footer.ejs") %>
+        <script>
+          function confirmDelete(id) {
+            console.log(id);
+            $('form').attr('action', `/cars/${id}?_method=DELETE`);
+          }
+        </script>

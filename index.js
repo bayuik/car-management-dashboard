@@ -18,7 +18,7 @@ app.get("/add-car", addCar);
 app.get("/edit-car/:id", editCar);
 
 // API
-app.get("/cars", listCar);
+app.get("/cars", listCar);  
 app.get("/cars/:id", getCar);
 app.post("/cars", createCar);
 app.put("/cars/:id", updateCar);

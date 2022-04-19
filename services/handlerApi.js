@@ -45,7 +45,7 @@ const updateCar = (req, res) => {
       image,
     },
     query
-  ).then((car) => {
+  ).then(() => {
     res.redirect("/");
   });
 };
@@ -56,9 +56,7 @@ const deleteCar = (req, res) => {
       id: req.params.id,
     },
   }).then(() => {
-    res.status(200).json({
-      message: "Car deleted",
-    });
+    res.redirect("/");
   });
 };
 
