@@ -10,7 +10,7 @@
         <p class="font-weight-bold">
           <%= name %>
         </p>
-        <p class="fw-bold text-dark">Rp <%= (price/1000).toFixed(3) %> / hari</p>
+        <p class="fw-bold text-dark">Rp <%= price.toString().length > 3 ? (price/1000).toFixed(3) : price  %> / hari</p>
         <p><i class="bi bi-clock mr-2"></i>Updated at <%= updatedAt %>
         </p>
         <div class="d-flex justify-content-between">

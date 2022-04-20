@@ -15,7 +15,7 @@ const deleteImage = async (id) => {
   });
 };
 
-const createCar = (req, res, next) => {
+const createCar = (req, res) => {
   const { name, price, size } = req.body;
   const image = req.file.filename;
   Car.create({
@@ -46,8 +46,8 @@ const getCar = (req, res) => {
   });
 };
 
-const updateCar = async (req, res, next) => {
-  await deleteImage(req.params.id);
+const updateCar = async (req, res) => {
+  if (req.file) await deleteImage(req.params.id);
   const { name, price, size } = req.body;
   const image = req.file ? req.file.filename : req.body.oldImage;
   const query = {
