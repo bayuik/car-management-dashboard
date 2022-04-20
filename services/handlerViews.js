@@ -1,8 +1,9 @@
 const axios = require("axios");
 const moment = require("moment");
+require("dotenv").config(`${__dirname}/../.env`);
 
 const listCars = (req, res) => {
-  axios.get("http://localhost:3000/cars").then((response) => {
+  axios.get(`http://localhost:${process.env.PORT}/cars`).then((response) => {
     const cars = response.data;
     cars.forEach((car) => {
       car.updatedAt = moment(car.updatedAt).format("DD MMM YYYY, HH:MM");
@@ -24,7 +25,7 @@ const addCar = (req, res) => {
 };
 
 const editCar = (req, res) => {
-  axios.get(`http://localhost:3000/cars/${req.params.id}`).then((response) => {
+  axios.get(`http://localhost:${process.env.PORT}/cars/${req.params.id}`).then((response) => {
     const car = response.data;
     res.render("carForm", {
       page: "Update Car Information",

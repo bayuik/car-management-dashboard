@@ -1,14 +1,28 @@
 const { Car } = require("../models");
 const fs = require("fs");
-const { default: axios } = require("axios");
+
+const deleteImage = async (id) => {
+  const car = await Car.findOne({
+    where: {
+      id: id,
+    },
+  });
+  const image = car.image;
+  fs.unlink(`./public/uploads/${image}`, (err) => {
+    if (err) {
+      return err;
+    }
+  });
+};
 
 const createCar = (req, res, next) => {
   const { name, price, size } = req.body;
+  const image = req.file.filename;
   Car.create({
-    name: name,
-    price: price,
-    size: size,
-    image: req.file.filename,
+    name,
+    price,
+    size,
+    image,
   }).then(() => {
     res.redirect("/");
   });
@@ -32,8 +46,10 @@ const getCar = (req, res) => {
   });
 };
 
-const updateCar = (req, res, next) => {
+const updateCar = async (req, res, next) => {
+  await deleteImage(req.params.id);
   const { name, price, size } = req.body;
+  const image = req.file ? req.file.filename : req.body.oldImage;
   const query = {
     where: {
       id: req.params.id,
@@ -45,25 +61,11 @@ const updateCar = (req, res, next) => {
       name,
       price,
       size,
-      image: req.file.filename,
+      image,
     },
     query
   ).then(() => {
     res.redirect("/");
-  });
-};
-
-const deleteImage = async (id) => {
-  const car = await Car.findOne({
-    where: {
-      id: id,
-    },
-  });
-  const image = car.image;
-  fs.unlink(`./public/uploads/${image}`, (err) => {
-    if (err) {
-      return err;
-    }
   });
 };
 

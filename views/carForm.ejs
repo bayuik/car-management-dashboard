@@ -43,7 +43,7 @@
           <div class="form-group row">
             <label class="form-label col-2" for="foto">Foto<span class="text-danger">*</span></label>
             <div class="col-10">
-              <input class="form-control" id="foto" type="file" placeholder="Foto*" data-sb-validations="required"
+              <input class="form-control" id="foto" type="file" placeholder="Foto*" data-sb-validations="required" <%= method == "POST" ? "required" : "" %>
                 name="image" />
               <small class="form-text text-muted">File size max. 2MB</small>
               <div class="invalid-feedback" data-sb-feedback="foto:required">Foto* is required.</div>

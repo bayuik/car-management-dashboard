@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 
+// setting image upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/uploads/");
@@ -22,7 +23,6 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + "-" + uniqueSuffix);
   },
 });
-
 const upload = multer({ storage: storage });
 
 // Views
