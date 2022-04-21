@@ -65,14 +65,14 @@
       <div aria-label="breadcrumb">
         <ol class="breadcrumb bg-light">
           <li class="breadcrumb-item"><a href="#" class="text-dark fw-bold">Cars</a></li>
-          <% if(page !="List Cars" ){ %>
+          <% if(page == 'Add New Car' || page == 'Update Car Information'){ %>
           <li class="breadcrumb-item"><a href="/" class="text-dark fw-bold">List Cars</a></li>
           <li class="breadcrumb-item active" aria-current="page">
             <%= page %>
           </li>
           <% }else{ %>
           <li class="breadcrumb-item active" aria-current="page">
-            <%= page %>
+            LIst Cars
           </li>
           <% } %>
         </ol>
@@ -81,17 +81,21 @@
         <h5 class="text-dark mb-0 font-weight-bold ml-3">
           <%= page %>
         </h5>
-        <% if(page=='List Cars') { %>
+        <% if(page != 'Add New Car' && page != 'Update Car Information' ) { %>
         <a href="/add-car" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">+ Add New Car</a>
         <% } %>
       </div>
     </div>
-    <% if(page=='List Cars' ) { %>
+    <% if(page != 'Add New Car' && page != 'Update Car Information' ) { %>
     <div class="container mb-3">
-      <a href="/" class="btn btn-sm btn-outline-primary mr-3">All</a>
-      <a href="/cars/size/small" class="btn btn-sm btn-outline-primary mr-3">Small</a>
-      <a href="/cars/size/medium" class="btn btn-sm btn-outline-primary mr-3">Medium</a>
-      <a href="/cars/size/large" class="btn btn-sm btn-outline-primary mr-3">Large</a>
+      <a href="/"
+        class="btn btn-sm <%= size != undefined && size == 'all' ? "btn-primary" : "btn-outline-primary" %> mr-3">All</a>
+      <a href="/cars/size/small"
+        class="btn btn-sm <%= size != undefined && size == "small" ? "btn-primary" : "btn-outline-primary" %> mr-3">Small</a>
+      <a href="/cars/size/medium"
+        class="btn btn-sm <%= size != undefined && size == "medium" ? "btn-primary" : "btn-outline-primary" %> mr-3">Medium</a>
+      <a href="/cars/size/large"
+        class="btn btn-sm <%= size != undefined && size == "large" ? "btn-primary" : "btn-outline-primary" %> mr-3">Large</a>
     </div>
     <% }%>
 

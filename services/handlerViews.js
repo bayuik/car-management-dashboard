@@ -10,6 +10,7 @@ const listCars = (req, res) => {
     });
     res.render("index", {
       cars,
+      size: 'all',
       page: "List Cars",
     });
   });
@@ -20,6 +21,7 @@ const addCar = (req, res) => {
     page: "Add New Car",
     method: "POST",
     id: "",
+    size: '',
     sizes: ["small", "medium", "large"],
     action: "addCar()",
   });
@@ -33,6 +35,7 @@ const editCar = (req, res) => {
       method: "PUT",
       id: req.params.id,
       car,
+      size : '',
       sizes: ["small", "medium", "large"],
       action: `editCar(${req.params.id})`,
     });
@@ -42,12 +45,14 @@ const editCar = (req, res) => {
 const listCarsFilter = (req, res) => {
   axios.get(`http://localhost:${process.env.PORT}/cars/filter/${req.params.size}`).then((response) => {
     const cars = response.data;
+    const size = req.params.size;
     cars.forEach((car) => {
       car.updatedAt = moment(car.updatedAt).format("DD MMM YYYY, HH:mm");
     });
     res.render("index", {
       cars,
-      page: `List Cars by Size: ${req.params.size}`,
+      size,
+      page: `List Cars by Size: ${size[0].toUpperCase() + size.slice(1)}`,
     });
   });
 };
