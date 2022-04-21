@@ -33,13 +33,12 @@
           <img src="/images/img-BeepBeep.png" width="200px" alt="cars-1" class="mb-5 rounded">
           <h5>Menghapus Data Mobil</h5>
           <p class="text-center">Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
-          <form action="" method="post">
-            <div class="d-flex w-50 mx-auto">
-              <button id="confirmBtn" type="submit" class="btn btn-primary mr-5" style="width: 50%;">Ya</button>
-              <button type="button" data-dismiss="modal" class="btn btn-outline-primary"
-                style="width: 50%;">Tidak</button>
-            </div>
-          </form>
+          <div class="d-flex w-50 mx-auto">
+            <button id="confirmBtn" type="button" onclick="deleteCar()" class="btn btn-primary mr-5"
+              style="width: 50%;">Ya</button>
+            <button type="button" data-dismiss="modal" class="btn btn-outline-primary"
+              style="width: 50%;">Tidak</button>
+          </div>
         </div>
       </div>
     </div>
@@ -47,9 +46,3 @@
 </div>
 
 <%- include("components/footer.ejs") %>
-<script>
-  function confirmDelete(id) {
-    console.log(id);
-    $('form').attr('action', `/cars/${id}?_method=DELETE`);
-  }
-</script>

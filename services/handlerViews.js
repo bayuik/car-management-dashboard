@@ -6,7 +6,7 @@ const listCars = (req, res) => {
   axios.get(`http://localhost:${process.env.PORT}/cars`).then((response) => {
     const cars = response.data;
     cars.forEach((car) => {
-      car.updatedAt = moment(car.updatedAt).format("DD MMM YYYY, HH:MM");
+      car.updatedAt = moment(car.updatedAt).format("DD MMM YYYY, HH:mm");
     });
     res.render("index", {
       cars,
@@ -21,6 +21,7 @@ const addCar = (req, res) => {
     method: "POST",
     id: "",
     sizes: ["small", "medium", "large"],
+    action: "addCar()"
   });
 };
 
@@ -33,6 +34,7 @@ const editCar = (req, res) => {
       id: req.params.id,
       car,
       sizes: ["small", "medium", "large"],
+      action: `editCar(${req.params.id})`
     });
   });
 };

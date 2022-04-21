@@ -17,15 +17,23 @@ const deleteImage = async (id) => {
 
 const createCar = (req, res) => {
   const { name, price, size } = req.body;
-  const image = req.file.filename;
+  const image = req.file ? req.file.filename : "";
   Car.create({
     name,
     price,
     size,
     image,
-  }).then(() => {
-    res.redirect("/");
-  });
+  })
+    .then(() => {
+      res.status(200).json({
+        message: "Car created",
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error creating car",
+      });
+    });
 };
 
 const listCar = (req, res) => {
@@ -64,9 +72,17 @@ const updateCar = async (req, res) => {
       image,
     },
     query
-  ).then(() => {
-    res.redirect("/");
-  });
+  )
+    .then(() => {
+      res.status(200).json({
+        message: "Car updated",
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error updating car",
+      });
+    });
 };
 
 const deleteCar = async (req, res) => {
@@ -75,9 +91,17 @@ const deleteCar = async (req, res) => {
     where: {
       id: req.params.id,
     },
-  }).then(() => {
-    res.redirect("/");
-  });
+  })
+    .then(() => {
+      res.status(200).json({
+        message: "Car deleted successfully",
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error deleting car",
+      });
+    });
 };
 
 module.exports = {
