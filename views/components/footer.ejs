@@ -15,6 +15,16 @@
   integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
 <script>
   function confirmDelete(id) {
     $('#confirmBtn').attr('onclick', `deleteCar('${id}')`);
@@ -28,8 +38,21 @@
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        window.location.reload();
+        Toastify({
+        text: `${response.data.message}`,
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        style: {
+          background: "#151515",
+          padding: "10px 50px",
+          borderRadius: "8px"
+        },
+        onClick: function () {}
+      }).showToast();
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
       })
       .catch(function (error) {
         console.log(error);
@@ -41,13 +64,19 @@
     let price = $('#price').val();
     let size = $('#size').val();
     let image = $('#image')[0].files[0];
-    // check if all fields are filled
     if (name == '' || price == '' || size == '' || image == undefined) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Semua Field Harus Diisi!',
-      })
+      Toastify({
+        text: "Data tidak boleh kosong",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        style: {
+          background: "#FF1818",
+          padding: "10px 50px",
+          borderRadius: "8px"
+        },
+        onClick: function () {}
+      }).showToast();
       return;
     }
 
@@ -64,8 +93,21 @@
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        window.location.replace("/");
+        Toastify({
+        text: `${response.data.message}`,
+        duration: 1000,
+        gravity: "top",
+        position: "center",
+        style: {
+          background: "#73CA5C",
+          padding: "10px 50px",
+          borderRadius: "8px"
+        },
+        onClick: function () {}
+      }).showToast();
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
       })
       .catch(function (error) {
         console.log(error);
@@ -90,23 +132,27 @@
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        window.location.replace("/")
+        Toastify({
+        text: `${response.data.message}`,
+        duration: 1000,
+        gravity: "top",
+        position: "center",
+        style: {
+          background: "#73CA5C",
+          padding: "10px 50px",
+          borderRadius: "8px"
+        },
+        onClick: function () {}
+      }).showToast();
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-  integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="/js/jquery.easing.min.js"></script>
-<script src="/js/sb-admin-2.min.js"></script>
 
 </body>
 
