@@ -14,6 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
   integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   function confirmDelete(id) {
     $('#confirmBtn').attr('onclick', `deleteCar('${id}')`);
@@ -40,6 +41,16 @@
     let price = $('#price').val();
     let size = $('#size').val();
     let image = $('#image')[0].files[0];
+    // check if all fields are filled
+    if (name == '' || price == '' || size == '' || image == undefined) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Semua Field Harus Diisi!',
+      })
+      return;
+    }
+
     let data = new FormData();
     data.append('name', name);
     data.append('price', price);

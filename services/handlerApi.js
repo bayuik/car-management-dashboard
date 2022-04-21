@@ -36,12 +36,35 @@ const createCar = (req, res) => {
     });
 };
 
+const carsBySize = (req, res) => {
+  const { size } = req.params;
+  Car.findAll({
+    where: {
+      size: size,
+    },
+  })
+    .then((car) => {
+      res.status(200).json(car);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error getting cars by size",
+      });
+    });
+};
+
 const listCar = (req, res) => {
   Car.findAll({
     order: [["id", "DESC"]],
-  }).then((car) => {
-    res.status(200).json(car);
-  });
+  })
+    .then((car) => {
+      res.status(200).json(car);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error getting cars",
+      });
+    });
 };
 
 const getCar = (req, res) => {
@@ -106,6 +129,7 @@ const deleteCar = async (req, res) => {
 
 module.exports = {
   createCar,
+  carsBySize,
   listCar,
   getCar,
   updateCar,
