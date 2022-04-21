@@ -1,5 +1,5 @@
 # Car Management Dashboard
-![alt text](https://github.com/bayuik/car-management-dashboard/blob/main/ERD/ERD.png)
+![alt text](./ERD/ERD.png)
 
 # Endpoint
 ### Get all cars list
