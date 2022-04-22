@@ -1,5 +1,7 @@
 const { Car } = require("../models");
 const fs = require("fs");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const deleteImage = async (id) => {
   const car = await Car.findOne({
@@ -49,6 +51,25 @@ const carsBySize = (req, res) => {
     .catch((err) => {
       res.status(500).json({
         message: "Error getting cars by size",
+      });
+    });
+};
+
+const CarsByKeyword = (req, res) => {
+  const { keyword } = req.params;
+  Car.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${keyword}%`,
+      },
+    },
+  })
+    .then((car) => {
+      res.status(200).json(car);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error getting cars by keyword",
       });
     });
 };
@@ -130,6 +151,7 @@ const deleteCar = async (req, res) => {
 module.exports = {
   createCar,
   carsBySize,
+  CarsByKeyword,
   listCar,
   getCar,
   updateCar,

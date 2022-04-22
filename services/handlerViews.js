@@ -10,7 +10,7 @@ const listCars = (req, res) => {
     });
     res.render("index", {
       cars,
-      size: 'all',
+      size: "all",
       page: "List Cars",
     });
   });
@@ -21,7 +21,7 @@ const addCar = (req, res) => {
     page: "Add New Car",
     method: "POST",
     id: "",
-    size: '',
+    size: "",
     sizes: ["small", "medium", "large"],
     action: "addCar()",
   });
@@ -35,7 +35,7 @@ const editCar = (req, res) => {
       method: "PUT",
       id: req.params.id,
       car,
-      size : '',
+      size: "",
       sizes: ["small", "medium", "large"],
       action: `editCar(${req.params.id})`,
     });
@@ -57,9 +57,26 @@ const listCarsFilter = (req, res) => {
   });
 };
 
+const listCarsByKeyword = (req, res) => {
+  axios.get(`http://localhost:${process.env.PORT}/cars/search/${req.params.keyword}`).then((response) => {
+    const cars = response.data;
+    const keyword = req.params.keyword;
+    cars.forEach((car) => {
+      car.updatedAt = moment(car.updatedAt).format("DD MMM YYYY, HH:mm");
+    });
+    res.render("index", {
+      cars,
+      keyword,
+      size: "",
+      page: `List Cars by Keyword: ${keyword}`,
+    });
+  });
+};
+
 module.exports = {
   listCars,
   addCar,
   editCar,
   listCarsFilter,
+  listCarsByKeyword,
 };
