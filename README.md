@@ -216,3 +216,47 @@ Example Output
     "message": "Car deleted successfully"
 }
 ```
+
+### Get car by keyword
+http://localhost:3000/cars/search/por
+
+##### Example Request Body
+```
+var config = {
+  method: 'get',
+  url: 'http://localhost:3000/cars/search/por',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
+
+##### Example output
+```
+[
+    {
+        "id": 118,
+        "name": "Porsche",
+        "price": 200000,
+        "size": "small",
+        "image": "image-1650644110804-317815263",
+        "createdAt": "2022-04-22T16:15:10.814Z",
+        "updatedAt": "2022-04-22T16:15:10.814Z"
+    },
+    {
+        "id": 120,
+        "name": "PORSCHE",
+        "price": 150000,
+        "size": "small",
+        "image": "image-1650644152388-739804442",
+        "createdAt": "2022-04-22T16:15:52.394Z",
+        "updatedAt": "2022-04-22T16:15:52.394Z"
+    }
+]
+```
