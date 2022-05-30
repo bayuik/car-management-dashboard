@@ -6,6 +6,10 @@
 npm start
 ```
 
+# Database management
+- `sequelize db:create` to create database in PostgreSQL
+- `sequelize db:migrate` to migrate database
+
 # Endpoint
 ### Get all cars list
 http://localhost:3000/cars
