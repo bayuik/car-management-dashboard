@@ -1,9 +1,15 @@
 # Car Management Dashboard
 ![alt text](./ERD/ERD.png)
 
+# Run
+```
+npm start
+```
+
 # Endpoint
 ### Get all cars list
 http://localhost:3000/cars
+
 
 ##### Example request Body
 ```
